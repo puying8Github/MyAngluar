@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="a2_5">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="script/angular.min.js"></script>
+</head>
+<body>
+<!--通过表达式绑定$scope对象的方法-->
+<div ng-controller="c2_5">
+    <span class="show">{{span_show()}}</span>
+</div>
+<!--在事件中绑定$scope对像的方法-->
+<div ng-controller="c2_6">
+    <span class="show">{{text}}</span>
+    <input type="button" id="btnShow1" ng-click="click_show()" value="click me"/>
+</div>
+<!--添加带参数的$scope方法-->
+<div ng-controller="c2_7">
+    <span class="show">{{text}}</span>
+    <input type="button" id="btnShow2"  ng-click="click_show()" value="显示"/>
+    <input type="button" id="btnPara" ng-click="click_para('单击了带参数按钮');" value="带参数显示"/>
+</div>
+<script>
+    var a2_5=angular.module('a2_5',[]);
+    a2_5.controller('c2_5',['$scope',function($scope){
+        $scope.text='Hello Angular';
+        $scope.span_show=function(){
+            $scope.text="欢迎到angular的精彩世界";
+            return $scope.text;
+        }
+    }]);
+    a2_5.controller('c2_6',['$scope',function($scope){
+        $scope.text="hello angular";
+        $scope.click_show=function(){
+            $scope.text="单击显示"
+        }
+    }]);
+    a2_5.controller('c2_7',['$scope',function($scope){
+        $scope.text="Hello Angular";
+        $scope.click_show=function(){
+            $scope.text="单击后显示的内容";
+        }
+        $scope.click_para=function(ptext){
+            $scope.text=ptext;
+        }
+    }])
+</script>
+</body>
+</html>

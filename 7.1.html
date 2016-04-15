@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>传统的Ajax方式与服务端交互</title>
+    <link rel="stylesheet" href="style/css7.css"/>
+</head>
+<body>
+<div class="frame">
+    <ul id="stuInfo">
+        <li>正式加载中...</li>
+    </ul>
+</div>
+<script>
+    (function(){
+//        ajax的方法原生
+        var xhr=null;
+        if(window.ActiveXObject){
+            xhr=new ActiveXObject("Microsoft.XMLHTTP")
+        }
+        else if(window.XMLHttpRequest){
+            xhr=new XMLHttpRequest()
+        }
+        xhr.onreadystatechange=function(){
+            if(xhr.readyState==4){
+                if(xhr.status==200){
+                    var HTML="";
+                    var data=eval("("+xhr.responseText+")");
+                    for(var i=0;i<data.length;i++){
+                        HTML+="<li><span>"+data[i].Code+"</span><span>"+data[i].Name+"</span><span>"+data[i].Score+"</span></li>"
+                    }
+                    document.getElementById("stuInfo").innerHTML=HTML;
+                }
+            }
+        }
+        xhr.open("Get","data/stu.php",true);
+        xhr.send();
+    })()
+</script>
+</body>
+</html>

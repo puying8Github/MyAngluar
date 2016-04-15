@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="a9_1">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>调用$location对象的只读方法</title>
+    <script src="script/angular.min.js"></script>
+    <link rel="stylesheet" href="style/css9.css"/>
+</head>
+<body>
+<div class="frame" ng-controller="c9_1">
+    <div>绝对地址:{{absUrl}}</div>
+    <div>协议名称:{{protocol}}</div>
+    <div>请求主机:{{host}}</div>
+    <div>请求端口:{{port}}</div>
+</div>
+<script>
+    angular.module('a9_1',[])
+            .controller('c9_1',function($scope,$location){
+                $scope.absUrl=$location.absUrl();
+                $scope.protocol=$location.protocol();
+                $scope.host=$location.host();
+                $scope.port=$location.port();
+            })
+</script>
+</body>
+</html>

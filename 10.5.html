@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="a10_5">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>使用track by排序ng-repeat中的数据</title>
+    <script src="script/angular.min.js"></script>
+    <link rel="stylesheet" href="style/css10.css"/>
+</head>
+<body>
+<div class="frame" ng-controller="c10_5">
+    <button ng-click="update()">更新</button>
+    <ul ng-repeat="user in users track by user.id">
+        <li>
+            <span>{{user.id}}</span>
+            <span>{{user.name}}</span>
+        </li>
+    </ul>
+</div>
+<script>
+    angular.module('a10_5',[])
+            .controller('c10_5',function($scope){
+                var users=[
+                    {id:1010,name:'张立秋1',score:10},
+                    {id:1020,name:'张立秋2',score:20},
+                    {id:1030,name:'张立秋3',score:30}
+                ];
+                $scope.users=users;
+                console.log($scope.users);
+                $scope.update=function(){
+                    var result=[
+                        {id:1040,name:'张立秋4',score:40},
+                        {id:1050,name:'张立秋5',score:50},
+                        {id:1060,name:'张立秋6',score:60}
+                    ];
+                    $scope.users=result;
+                    console.log($scope.users);
+                }
+            })
+</script>
+</body>
+</html>

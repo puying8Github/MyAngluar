@@ -1,0 +1,26 @@
+.frame{
+    padding:5px 8px;
+    margin: 0;
+    font-size: 12px;
+    width: 320px;
+    background-color: #eee;
+}
+.frame div{
+    margin: 5px 0;
+}
+.frame .title{
+    font-size: 13px;
+    font-weight:bold ;
+}
+.frame .show{
+    display: block;
+}
+.frame .hide{
+    display: none;
+}
+.frame .brow input{
+    width:310px;
+    padding:3px;
+    border: 1px solid #666;
+
+}

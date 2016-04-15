@@ -1,0 +1,30 @@
+.frame{
+    padding: 5px 8px ;
+    margin: 0;
+    font-size: 12px;
+    width:320;
+    background-color: #eee;
+}
+.frame div{
+    margin: 10px 0;
+}
+.frame ul{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+.frame ul li:first-child{
+    font-weight: bold;
+    font-size: 13px;
+}
+.frame ul li{
+    height:28px;
+    line-height: 28px;
+}
+.frame ul li span{
+    float: left;
+    width:80px;
+}
+.frame ul li span:last-child{
+    cursor: pointer;
+}

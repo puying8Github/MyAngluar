@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="a10_6">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>正确理解ng-repeat指令中scope的继承关系</title>
+    <script src="script/angular.min.js"></script>
+    <link rel="stylesheet" href="style/css10.css"/>
+</head>
+<body>
+<div ng-controller="c10_6" class="frame">
+    <input type="button" value="按钮1" ng-click="change1();"/>
+    <input type="button" value="按钮2" ng-click="change2();"/>
+    <input type="button" value="按钮3" ng-click="change3();"/>
+    <ul ng-repeat="user in users track by user.id">
+        <li>
+            <span id="spn{{user.id}}">{{user.id}}</span>
+            <span id="spn{{user.name}}">{{user.name}}</span>
+            <span id="spn{{user.score}}">{{user.score}}</span>
+        </li>
+    </ul>
+</div>
+<script>
+    angular.module('a10_6',[])
+            .controller('c10_6',function($scope){
+                $scope.users=[
+                    {id:1010,name:'张立秋1',score:10},
+                    {id:1020,name:'张立秋2',score:70},
+                    {id:1030,name:'张立秋3',score:50}
+                ];
+                $scope.change1=function(){
+                    var scope1=angular.element(document.getElementById("spn1010")).scope();
+                    var scope2=angular.element(document.getElementById("spn1020")).scope();
+                    console.log(scope1==scope2);
+                };
+                $scope.change2=function(){
+                    var scope=angular.element(document.getElementById("spn1020")).scope();
+                    console.log(scope.$parent==$scope);
+                };
+                $scope.change3=function(){
+                    var scope=angular.element(document.getElementById("spn1030")).scope();
+                   scope.$parent.users=[
+                       {id:1040,name:'张立秋4',score:40},
+                       {id:1050,name:'张立秋5',score:50},
+                       {id:1060,name:'张立秋6',score:60}
+                   ];
+
+                }
+            })
+</script>
+</body>
+</html>

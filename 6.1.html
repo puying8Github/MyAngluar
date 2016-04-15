@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="a6_1">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>内置服务调用</title>
+    <script src="script/angular.min.js"></script>
+    <style>
+        body{
+            font-size: 12px;
+        }
+        .show{
+            background-color: #ccc;
+            padding: 8px;
+            width: 260px;
+            margin: 10px 0px;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="c6_1">
+    <div class="show">
+        当前地址是{{url}}
+    </div>
+    <button ng-click="onclick()">显示地址</button>
+</div>
+<script>
+    angular.module('a6_1',[])
+            .controller('c6_1',function($scope,$location){
+                $scope.onclick=function(){
+                    $scope.url=$location.absUrl();//获取网页地址
+                }
+            })
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html ng-app="a3_5">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>字符查找</title>
+    <script src="script/angular.min.js"></script>
+    <style>
+        body{
+            font-size: 12px;
+        }
+        ul{
+            list-style: none;
+            width:408px;
+            margin: 0;
+            padding: 0;
+        }
+        ul li{
+            float: left;
+            padding: 5px 0;
+        }
+        ul .odd{
+            color:#0026ff;
+        }
+        ul .even{
+            color:#ff0000;
+        }
+        ul .bold{
+            font-weight: bold;
+        }
+        ul li span{
+            width: 52px;
+            float: left;
+            padding:0 10px;
+        }
+        ul .focus{
+            background-color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+    <div ng-controller="c3_5">
+        <div>
+            <input type="text" id="txtkey" ng-model="key" placeholder="请输入姓名关键字"/>
+        </div>
+        <ul>
+            <li ng-class="{{bold}}">
+                <span>序号</span>
+                <span>姓名</span>
+                <span>性别</span>
+                <span>年龄</span>
+                <span>分数</span>
+            </li>
+            <li ng-repeat="stu in data | filter:{name:key}">
+                <span>{{$index+1}}</span>
+                <span>{{stu.name}}</span>
+                <span>{{stu.sex}}</span>
+                <span>{{stu.age}}</span>
+                <span>{{stu.score}}</span>
+            </li>
+        </ul>
+    </div>
+    <script>
+        var a3_5=angular.module('a3_5',[]);
+        a3_5.controller("c3_5",['$scope',function($scope){
+            $scope.bold="bold";
+            $scope.key="";
+            $scope.data=[
+                {name:"张明明1",sex:"女",age:30,score:95},
+                {name:"张明明2",sex:"女",age:22,score:55},
+                {name:"张明明3",sex:"女",age:24,score:93},
+                {name:"张明明4",sex:"女",age:20,score:91},
+                {name:"张明明5",sex:"女",age:24,score:45},
+                {name:"张明明6",sex:"女",age:29,score:65},
+                {name:"张明明7",sex:"女",age:26,score:85}
+            ]
+        }])
+    </script>
+</body>
+</html>

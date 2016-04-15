@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="a9_4">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>捕捉$locationChangeSuccess事件</title>
+    <script src="script/angular.min.js"></script>
+    <link rel="stylesheet" href="style/css9.css"/>
+</head>
+<body>
+<div class="frame" ng-controller="c9_4">
+    <div>当前状态1:{{tip_a}}</div>
+    <div>当前URL:{{current}}</div>
+    <hr/>
+    <div>当前状态2:{{tip_b}}</div>
+    <div>上页URL:{{previous}}</div>
+</div>
+<script>
+    var app=angular.module('a9_4',[])
+            .controller('c9_4',function($rootScope,$window,$location,$log,$scope){
+                $rootScope.$on('$locationChangeStart',function(evt,current,previous){
+                    $scope.tip_a="URL地址即将发生改变!";
+                    var yn=$window.confirm("确定真的要离开吗");
+                    if(yn){
+                        $location.path('/change');
+                        return;
+                    }
+                    evt.preventDefault();
+                    $scope.tip_b="用户取消了URL的改变";
+                    $scope.current=current;
+                    $scope.previous=previous;
+                    return;
+                })
+                $rootScope.$on('$locationChangeSuccess',function(evt,current,previous){
+                    $scope.tip_b="URL地址改变操作完成";
+                    $scope.current=current;
+                    $scope.previous=previous;
+                })
+            })
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="a7_3">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>使用$http配置对象方式与服务端交互</title>
+    <script src="script/angular.min.js"></script>
+    <link rel="stylesheet" href="style/css7.css"/>
+</head>
+<body>
+<div class="frame" ng-controller="c7_3">
+    <div class="show">
+        <input type="text" ng-model="num"/>
+        <button ng-click="onClick()">验证奇偶</button>
+        <div class="tip">您输入的是:{{result}}</div>
+    </div>
+</div>
+<script>
+    /*
+     * $http({
+     * method://http请求方式如:POST/GET/JSONP/DELETE/PUT/HEAD
+     * url://服务器请求的地址
+     * data://一个对象,发送的数据
+     * params://一个字符串或对象
+     * transformRequest://对请求头信息和请求体进行序列化转换
+     * transformResponse://对响应头信息和响应体进行序列化转换
+     * cache://返回数据是否缓存
+     * timeout://延迟发送HTTP请求的时间
+     * })
+     *
+     * */
+    angular.module('a7_3',[])
+            .controller('c7_3',function($scope,$http){
+                $scope.num=0;
+                $scope.result="偶数";
+                $scope.onClick=function(){
+                    $http({
+                        method:'GET',
+                        url:'data/chk.php',
+                        params:{
+                            n:$scope.num
+                        }
+                    }).success(function(data,status,headers,config){
+                        $scope.result=data;
+                    })
+                }
+
+            })
+ </script>
+</body>
+</html>

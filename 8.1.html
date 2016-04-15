@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="a8_1">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>创建一个新的指令</title>
+    <script src="script/angular.min.js"></script>
+    <link rel="stylesheet" href="style/css8.css"/>
+</head>
+<body>
+<div class="frame">
+    <!---->
+    <ts-hello></ts-hello>
+    <div ts-hello></div>
+    <div class="ts-hello"></div>
+    <div data-ts-hello></div>
+</div>
+<script>
+    /*
+    * 指令在html中为 指令前缀-指令名称
+    * 参数中必须改用驼峰命名风格
+    * */
+    var app=angular.module('a8_1',[]);
+    app.directive('tsHello',function(){////
+        return {
+            restrict:'EAC',
+            template:'<h3>Hello,angular</h3>'
+        }
+    })
+</script>
+</body>
+</html>

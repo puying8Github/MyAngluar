@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="a2_12">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>控制元素的隐藏与显示</title>
+    <script src="script/angular.min.js"></script>
+    <style>
+        body{
+            font-size: 12px;
+        }
+        ul{
+            list-style: none;
+            margin:0;
+            padding: 0px;
+         }
+        div{
+            margin: 8px 0px ;
+        }
+        
+</style>
+</head>
+<body>
+<div ng-controller="c2_12">
+    <div ng-show={{isShow}}>puying1</div>
+    <div ng-hide={{isHide}}>sdflksjfkd@dlkfjskdf.com</div>
+    <ul ng-switch on={{switch}}>
+        <li ng-switch-when="1">puying</li>
+        <li ng-switch-when="2">sdafaskd@kjfdls.com</li>
+        <li ng-switch-defaule>更多....</li>
+    </ul>
+
+</div>
+<script>
+    var a2_12=angular.module('a2_12',[]);
+    a2_12.controller('c2_12',['$scope',function($scope){
+        $scope.isShow=true;
+        $scope.isHide=false;
+        $scope.switch=3;
+    }])
+</script>
+</body>
+</html>

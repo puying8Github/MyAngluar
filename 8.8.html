@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="a8_8">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>一个使用require和controller属性的示例</title>
+    <script src="script/angular.min.js"></script>
+    <link rel="stylesheet" href="style/css8.css"/>
+</head>
+<body>
+<div class="frame">
+    <ts-parent>
+        <div class="tip">{{ptip}}</div>
+        <ts-child>
+            <div class="tip">{{ctip}}</div>
+        </ts-child>
+        <button ng-click="click()">换位</button>
+    </ts-parent>
+</div>
+<script>
+    var app=angular.module('a8_8',[])
+            .directive('tsParent',function(){
+                return{
+                    restrict:'EAC',
+                    controller:function($scope,$compile,$http){
+                        this.addChild=function(c){
+                            $scope.ptip="今天天气不错";
+                            $scope.click=function(){
+                                $scope.tmp=$scope.ptip;
+                                $scope.ptip= c.ctip;
+                                c.ctip=$scope.tmp;
+                            }
+
+                        }
+                    }
+                }
+            })
+            .directive('tsChild',function(){
+                return{
+                    restrict:'EAC',
+                    require:'^tsParent',
+                    link:function(scope,iEle,iAttrs,ctrl){
+                        scope.ctip='气温正好20度';
+                        ctrl.addChild(scope);
+                    }
+                }
+            })
+</script>
+</body>
+</html>

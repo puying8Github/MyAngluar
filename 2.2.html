@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="a2_4"><!------------------定义模块-------------------------------------->
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="script/angular.min.js"></script>
+</head>
+<body>
+<!--$window窗口对象-->
+<div ng-controller="c2_2">
+    <input type="text" ng-model="text"/>
+    <button ng-click="show()">显示</button>
+</div>
+<!--angular表达式的容错性-->
+<div ng-controller="c2_3">
+    <span>{{tmp}}</span><!-------这是错误------->
+    <button ng-click="error();">单击</button>
+</div>
+<!--控制器初始化$scope对象-->
+<div ng-controller="c2_4">
+    <span>{{text}}</span>
+</div>
+<script>
+    function c2_2($window,$scope){
+        $scope.text="";
+        $scope.show=function(){
+            $window.alert("您输入的是:"+$scope.text);
+        }
+    }
+    function c2_3($scope){
+        $scope.temp="angularjs";
+        $scope.error=function(){
+            console.log($scope)
+        }
+    }
+    //初始化控件
+   var a2_4=angular.module('a2_4',[]);
+    a2_4.controller('c2_4',['$scope',function($scope){
+        $scope.text='Hello angular';
+    }])
+</script>
+</body>
+</html>

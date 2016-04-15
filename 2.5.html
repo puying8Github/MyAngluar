@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="a2_9">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>构建模板内容</title>
+    <script src="script/angular.min.js"></script>
+</head>
+<body>
+<script type="text/ng-template" id="tplbase">
+    姓名:{{name}},<br/>邮箱:{{email}}
+</script>
+<div ng-include src="'tplbase'" ng-controller="c2_9">
+    <!--src有双引号里面还有一个单引号-->
+
+</div>
+<script type="text/javascript">
+    var a2_9=angular.module('a2_9',[]);
+    a2_9.controller('c2_9',['$scope',function($scope){
+        $scope.name="蒲映";
+        $scope.email="puyi2008@126.com";
+    }])
+</script>
+</body>
+</html>

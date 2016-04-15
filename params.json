@@ -1,6 +1,6 @@
 {
   "name": "Myangluar",
-  "tagline": "这是一个angluar的API样例",
+  "tagline": "这是自写的angluar学习示例",
   "body": "hello world",
   "note": "Don't delete this file! It's used internally to help with page regeneration."
 }

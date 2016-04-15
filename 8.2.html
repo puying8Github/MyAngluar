@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="a8_2">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>设置指令对象的基础属性</title>
+    <script src="script/angular.min.js"></script>
+    <link rel="stylesheet" href="style/css8.css"/>
+</head>
+<body>
+<div class="frame">
+    <ts-tplfile></ts-tplfile>
+    <ts-tplscipt></ts-tplscipt>
+    <ts-tplcache></ts-tplcache>
+</div>
+<script type="text/ng-template" id="tpl">
+    <h3>模板源于script元素</h3>
+</script>
+<script>
+    var app=angular.module('a8_2',[])
+            .run(function($templateCache){
+                $templateCache.put('cache',
+                '<h3>模板内容来源于缓存</h3>')
+            })
+            .directive('tsTplfile',function(){
+//                内容来自页面,外部文件
+                return {
+                    restrict:'EAC',
+                    templateUrl:'test'//外部文件用txt，或者html都可以，只是replace不能为true
+                }
+            })
+            .directive('tsTplscipt',function(){
+//                内容来自script text/ng-template
+                return{
+                    restrict:'EAC',
+                    templateUrl:'tpl',
+                    replace:true
+                }
+            })
+            .directive('tsTplcache',function(){
+//                内容来自 run
+                return{
+                    restrict:'EAC',
+                    templateUrl:'cache'
+                }
+            })
+</script>
+</body>
+</html>

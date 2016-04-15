@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html ng-app="a3_3">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>自定义过滤器</title>
+    <script src="script/angular.min.js"></script>
+    <style>
+        body{
+            font-size: 12px;
+        }
+        ul{
+            list-style: none;
+            width:408px;
+            margin: 0;
+            padding: 0;
+        }
+        ul li{
+            float: left;
+            padding: 5px 0;
+        }
+        ul .odd{
+            color:#0026ff;
+        }
+        ul .even{
+            color:#ff0000;
+        }
+        ul .bold{
+            font-weight: bold;
+        }
+        ul li span{
+            width: 52px;
+            float: left;
+            padding:0 10px;
+        }
+        ul .focus{
+            background-color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+    <div ng-controller="c3_3">
+        <ul>
+            <li ng-class="{{bold}}">
+                <span>序号</span>
+                <span>姓名</span>
+                <span>性别</span>
+                <span>年龄</span>
+                <span>分数</span>
+            </li>
+            <li ng-repeat="stu in data|young:0" ng-class-odd="'odd'" ng-class-even="'even'">
+                <span>{{$index+1}}</span>
+                <span>{{stu.name}}</span>
+                <span>{{stu.sex}}</span>
+                <span>{{stu.age}}</span>
+                <span>{{stu.score}}</span>
+            </li>
+        </ul>
+    </div>
+    <script>
+        var a3_3=angular.module('a3_3',[]);
+        a3_3.controller('c3_3',['$scope',function($scope){
+            $scope.bold='bold';
+            $scope.data=[
+                {name:"张明明1",sex:"女",age:30,score:95},
+                {name:"张明明2",sex:"女",age:22,score:55},
+                {name:"张明明3",sex:"女",age:24,score:93},
+                {name:"张明明4",sex:"女",age:20,score:91},
+                {name:"张明明5",sex:"女",age:24,score:45},
+                {name:"张明明6",sex:"女",age:29,score:65},
+                {name:"张明明7",sex:"女",age:26,score:85}
+            ];
+        }])
+        a3_3.filter("young",function(){
+            return function(e,type){
+                var _out=[];
+                var _sex=type?"男":"女";
+                for(var i=0;i< e.length;i++){
+                    if(e[i].age>22&&e[i].age<28&&e[i].sex==_sex){
+                        _out.push(e[i]);
+                    }
+                }
+                return _out;
+            }
+        })
+    </script>
+</body>
+</html>

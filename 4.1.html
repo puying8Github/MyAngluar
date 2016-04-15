@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="a4_1">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>依赖注入</title>
+    <script src="script/angular.min.js"></script>
+    <style>
+        body{
+            font-size:12px;
+        }
+        .show{
+            border:1px solid #ccc;
+            padding:8px;
+            width:260px;
+            margin:10px 0px;
+        }
+    </style>
+</head>
+<body>
+ <div ng-controller="c4_1">
+     <div class="{{cls}}">
+         {{show}}
+     </div>
+     <button ng-click="onClick()">点我</button>
+ </div>
+ <script>
+     var a4_1=angular.module('a4_1',[]);
+     //进行服务器注册
+     a4_1.config(function($controllerProvider){
+         $controllerProvider.register('c4_1',['$scope',function($scope){
+             $scope.cls="";
+             $scope.onClick=function(){
+                 $scope.cls="show";
+                 $scope.show="点击后显示的内容";
+             }
+         }])
+     })
+ </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+.frame{
+    padding: 2px 8px;
+    margin: 0;
+    font-size: 12px;
+    width:320px;
+    background-color: #eee;
+}
+.tip{
+    font-size: 9px;
+    color:#666;
+    margin:3px 5px;
+}

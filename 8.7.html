@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app="a8_7">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>scope属性是JSON对象</title>
+    <script src="script/angular.min.js"></script>
+    <link rel="stylesheet" href="style/css8.css"/>
+    <script type="text/ng-template" id="tpl">
+        <div class="tip">
+            <span>姓名：{{textName}}</span>
+            <span>年龄：{{textAge}}</span>
+        </div>
+        <button ng-transclude></button>
+    </script>
+</head>
+<body>
+<div class="frame" ng-controller="c8_7">
+    姓名：<input type="text" ng-model="text_name" placeholder="请输入姓名"/><br/>
+    年龄：<input type="text" ng-model="text_age" placeholder="请输入年龄"/>
+    <div class="tip">{{tip}}</div>
+    <ts-json a-attr="{{text_name}}" b-attr="text_age" reset="reSet()">重置</ts-json>
+</div>
+<script>
+    var app=angular.module('a8_7',[])
+            .controller('c8_7',function($scope){
+                $scope.reSet=function(){
+                    $scope.tip="姓名与年龄重置成功"
+                }
+            })
+            .directive('tsJson',function(){
+                return{
+                    restrict:'EAC',
+                    templateUrl:'tpl',
+                    transclude:true,
+                    scope:{
+                        //三种不同的绑定方式
+                        textName:'@aAttr',
+                        textAge:'=bAttr',
+                        reSet:'&reset'
+                    },
+                    link:function(scope,iEle,iAttrs){
+                        iEle.bind('click',function(){
+                            scope.$apply(function(){
+                                scope.reSet();
+                                scope.textName='张三';
+                                scope.textAge='20';
+                            })
+                        })
+                    }
+                }
+            })
+</script>
+</body>
+</html>
